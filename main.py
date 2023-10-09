@@ -66,16 +66,24 @@ def get_email(file_contents):
     return emails
 
 
-
 def extract_keywords(text):
     pattern = r'Ключевые\s*слова:\s*([^\.]+)\.'
     matches = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
     if matches:
         keywords_text = matches.group(1)
-        keywords_list = re.findall(r'\b\w+\s*-\s*\w+:\s*[^,]+', keywords_text)
+        keywords_list = re.findall(r'\b\w+\b', keywords_text)
         return keywords_list
     else:
         return []
+# def extract_keywords(text):
+#     pattern = r'Ключевые\s*слова:\s*([^\.]+)\.'
+#     matches = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
+#     if matches:
+#         keywords_text = matches.group(1)
+#         keywords_list = re.findall(r'\b\w+\s*-\s*\w+:\s*[^,]+', keywords_text)
+#         return keywords_list
+#     else:
+#         return []
 
 
 def get_degree(text):
@@ -156,15 +164,15 @@ if __name__ == "__main__":
 
         print(get_udk(file_contents))
 
-
-        keywords = []
-        for item in extract_keywords(file_contents):
-            # Разделяем элемент по символам новой строки и добавляем каждое слово в список
-            words = item.split('\n')
-            for word in words:
-                cleaned_word = re.sub(r'[^\w-]', '', word)
-                keywords.append(cleaned_word)
-        print(keywords)
+        print(extract_keywords(file_contents))
+        # keywords = []
+        # for item in extract_keywords(file_contents):
+        #     # Разделяем элемент по символам новой строки и добавляем каждое слово в список
+        #     words = item.split('\n')
+        #     for word in words:
+        #         cleaned_word = re.sub(r'[^\w-]', '', word)
+        #         keywords.append(cleaned_word)
+        # print(keywords)
         print(get_email(file_contents))
         print(get_degree(file_contents))
 

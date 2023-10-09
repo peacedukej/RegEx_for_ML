@@ -1,0 +1,32 @@
+{
+    "id": "0704.0904",
+    "submitter": "Robin Corbet",
+    "authors": "Robin Corbet, Richard Dubois",
+    "title": "The Use of Weighting in Periodicity Searches in All-Sky Monitor Data:\n  Applications to the GLAST LAT",
+    "comments": "2 pages. To appear in the Proceedings of the First International\n  GLAST Symposium, Febuary 5-8, 2007, Stanford University, AIP, Eds. S. Ritz,\n  P. F. Michelson, and C. Meegan",
+    "journal-ref": "AIP Conf.Proc.921:548-549,2007",
+    "doi": "10.1063/1.2757445",
+    "report-no": null,
+    "categories": "astro-ph",
+    "license": null,
+    "abstract": "  The light curves produced by all-sky monitors, such as the Rossi X-ray Timing\nExplorer All-Sky Monitor and the Swift Burst Alert Telescope (BAT), generally\nhave non-uniform error bars. In searching for periodic modulation in this type\nof data using power spectra it can be important to use appropriate weighting of\ndata points to achieve the best sensitivity. It was recently demonstrated that\nfor Swift BAT data a simple weighting scheme can actually sometimes reduce the\nsensitivity of the power spectrum depending on source brightness. Instead, a\nmodified weighting scheme, based on the Cochran semi-weighted mean, gives\nimproved results independent of source brightness. We investigate the benefits\nof weighting power spectra in period searches using simulated GLAST LAT\nobservations of gamma-ray binaries.\n",
+    "versions": [
+        {
+            "version": "v1",
+            "created": "Fri, 6 Apr 2007 16:49:01 GMT"
+        }
+    ],
+    "update_date": "2009-06-23",
+    "authors_parsed": [
+        [
+            "Corbet",
+            "Robin",
+            ""
+        ],
+        [
+            "Dubois",
+            "Richard",
+            ""
+        ]
+    ]
+}

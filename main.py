@@ -34,12 +34,13 @@ import re
 def get_doi(file_contents):
     doi_pattern = r'\b10\.\d{4,}/\S+\b'
     matches = re.finditer(doi_pattern, file_contents)
-    results = []
+    results = {}
 
     for match in matches:
         start_line = file_contents.count('\n', 0, match.start()) + 1
         end_line = file_contents.count('\n', 0, match.end()) + 1
-        results.append((match.group(), start_line, end_line))
+        #results.add((match.group(), [start_line, end_line]))
+        results['doi'] = [start_line, end_line]
 
     return results
 
@@ -47,11 +48,13 @@ def get_doi(file_contents):
 def get_udk(file_contents):
     udk_pattern = r'\d+(\.\d+)+'
     udk_match = re.search(udk_pattern, file_contents)
-
+    results = {}
     if udk_match:
         start_line = file_contents.count('\n', 0, udk_match.start()) + 1
         end_line = file_contents.count('\n', 0, udk_match.end()) + 1
-        return [(udk_match.group(), start_line, end_line)]
+        results['udk'] = [start_line, end_line]
+        return results
+        #return [(udk_match.group(), start_line, end_line)]
     else:
         return None
 # def get_udk(file_contents):
@@ -64,19 +67,20 @@ def get_udk(file_contents):
 def get_email(file_contents):
     email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
     email_matches = re.finditer(email_pattern, file_contents)
-    email_results = []
+    email_results = {}
 
     for match in email_matches:
         start_line = file_contents.count('\n', 0, match.start()) + 1
         end_line = file_contents.count('\n', 0, match.end()) + 1
-        email_results.append((match.group(), start_line, end_line))
+        email_results['email'] = [start_line, end_line]
+        #email_results.append((match.group(), start_line, end_line))
 
     return email_results
 
 def extract_keywords(text):
     pattern = r'Ключевые\s*слова:\s*([^\.]+)\.'
     matches = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
-    keyword_results = []
+    keyword_results = {}
 
     if matches:
         keywords_text = matches.group(1)
@@ -87,7 +91,8 @@ def extract_keywords(text):
             end = text.rfind(keywords_list[-1]) + len(keywords_list[-1])
             start_line = text.count('\n', 0, start) + 1
             end_line = text.count('\n', 0, end) + 1
-            keyword_results.append((keywords_list, start_line, end_line))
+            keyword_results['Keywords'] = [start_line, end_line]
+            #keyword_results.append((keywords_list, start_line, end_line))
 
     return keyword_results
 
@@ -151,13 +156,14 @@ def get_degree(text):
         r'к\.ю\.н\.': 'к.ю.н.',
     }
 
-    found_degrees = []
+    found_degrees = {}
     for regex, degree in degrees.items():
         results = re.finditer(regex, text)
         for result in results:
             start_line = text.count('\n', 0, result.start()) + 1
             end_line = text.count('\n', 0, result.end()) + 1
-            found_degrees.append((degree, start_line, end_line))
+            #found_degrees.append((degree, start_line, end_line))
+            found_degrees['degree'] = [start_line, end_line]
 
     return found_degrees
 

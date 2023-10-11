@@ -91,7 +91,7 @@ def extract_keywords(text):
             end = text.rfind(keywords_list[-1]) + len(keywords_list[-1])
             start_line = text.count('\n', 0, start) + 1
             end_line = text.count('\n', 0, end) + 1
-            keyword_results['Keywords'] = [start_line, end_line]
+            keyword_results['keywords'] = [start_line, end_line]
             #keyword_results.append((keywords_list, start_line, end_line))
 
     return keyword_results
